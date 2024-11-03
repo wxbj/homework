@@ -31,7 +31,7 @@ def merge(initial_list, left, mid, right):
 
 
 # 二分归并排序的非递归实现
-def binary_merge_sort(initial_list):
+def binary_merge_sort_non_recursive(initial_list):
     # 这里的i用来控制子数组的长度
     i = 1
     # 子数组长度是1、2、4、8这样的
@@ -56,5 +56,5 @@ def binary_merge_sort(initial_list):
 
 if __name__ == "__main__":
     initial_list = [5, 4, 3, 0, 1, 2, 7, 6, 11, 9, 20, 15]
-    binary_merge_sort(initial_list)
+    binary_merge_sort_non_recursive(initial_list)
     print(initial_list)
