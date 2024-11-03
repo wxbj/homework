@@ -31,22 +31,30 @@ def merge(initial_list, left, mid, right):
 
 
 # 二分归并排序的非递归实现
-def binary_merge_sort():
-    initial_list = [5, 4, 3, 0, 1, 2, 7, 6, 11, 9, 20, 15, 6]
+def binary_merge_sort(initial_list):
+    # 这里的i用来控制子数组的长度
     i = 1
-    # 2分法,子数组长度是1、2、4、8这样的
+    # 子数组长度是1、2、4、8这样的
     while i < len(initial_list):
+        # 从头开始合并
         left = 0
         # 这里是两两合并相邻的两个有序子数组,如果最后就剩一个就无需合并了
         while left < len(initial_list):
+            # 靠前的子数组[left,mid)
             mid = left + i
+            # 靠后的子数组[mid,right)
             right = min(left + 2 * i, len(initial_list))
+            # 最后剩的元素不够一个数组了,就不用处理了
             if mid < right:
+                # 合并前后两个子数组
                 merge(initial_list, left, mid, right)
+            # 处理下两个子数组
             left += 2 * i
+        # 子数组长度变大2倍
         i *= 2
-    print(initial_list)
 
 
 if __name__ == "__main__":
-    binary_merge_sort()
+    initial_list = [5, 4, 3, 0, 1, 2, 7, 6, 11, 9, 20, 15]
+    binary_merge_sort(initial_list)
+    print(initial_list)
