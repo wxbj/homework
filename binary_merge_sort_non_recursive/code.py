@@ -48,7 +48,7 @@ def binary_merge_sort_non_recursive(initial_list):
             if mid < right:
                 # 合并前后两个子数组
                 merge(initial_list, left, mid, right)
-            # 处理下两个子数组
+            # 处理后两个子数组
             left += 2 * i
         # 子数组长度变大2倍
         i *= 2
