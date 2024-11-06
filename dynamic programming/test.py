@@ -1,6 +1,7 @@
 from collections import deque
 
 
+# 动态规划
 def dynamic_programming_use_pretreatment(n, b, W, V, pretreatment_list):
     F = [[0 for _ in range(b + 1)] for _ in range(n + 1)]
     I = [[0 for _ in range(b + 1)] for _ in range(n + 1)]
@@ -26,14 +27,10 @@ def dynamic_programming_use_pretreatment(n, b, W, V, pretreatment_list):
 
 # 预处理，获取需要计算的值的序号
 def pretreatment(n, b, W):
-    # 用来存放预处理的二维列表
     my_list = []
-    # 用来遍历物品
     queue = deque()
-    # 初始化这个二维数组
     for i in range(n + 1):
         my_list.append(set())
-    # 将最后一个物品放入,初始化
     queue.append(n)
     queue.append(b)
     for i in range(n, 0, -1):
