@@ -1,3 +1,4 @@
+import random
 from collections import deque
 
 
@@ -87,4 +88,5 @@ if __name__ == "__main__":
     b = 10
     W = [0, 2, 3, 4, 7]
     V = [0, 1, 3, 5, 9]
+    # dynamic_programming(n, b, W, V)
     dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W))
