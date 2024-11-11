@@ -4,8 +4,8 @@ import random
 
 # 动态规划
 def dynamic_programming_use_pretreatment(n, b, W, V, pretreatment_list):
-    F = [[0 for _ in range(b)] for _ in range(n)]
-    I = [[0 for _ in range(b)] for _ in range(n)]
+    F = [[0 for _ in range(b + 1)] for _ in range(n)]
+    I = [[0 for _ in range(b + 1)] for _ in range(n)]
     X = [0 for _ in range(n)]
 
     for k, pretreatment_set in zip(range(len(pretreatment_list)), pretreatment_list):
@@ -24,14 +24,15 @@ def dynamic_programming_use_pretreatment(n, b, W, V, pretreatment_list):
                 F[k][x] = F[k - 1][x]
                 I[k][x] = 0
 
-        x = b - 1
+        x = b
         for k in range(n - 1, -1, -1):
             if I[k][x] == 1:
                 X[k] = 1
                 x = x - W[k]
             else:
                 X[k] = 0
-        return X
+
+    return X
 
 
 # 预处理，获取需要计算的值的序号
@@ -40,7 +41,7 @@ def pretreatment(n, b, W):
     for i in range(n):
         my_list.append([])
     queue = deque()
-    sign = [[0 for _ in range(b)] for _ in range(n)]
+    sign = [[0 for _ in range(b + 1)] for _ in range(n)]
 
     queue.append(n - 1)
     queue.append(b)
@@ -52,7 +53,7 @@ def pretreatment(n, b, W):
                 k = queue.popleft()
                 my_list[j].append(k)
                 sign[j][k] = 1
-                if k - W[j] > 0 and j >= 0:
+                if k - W[j] > 0 and j > 0:
                     queue.append(j - 1)
                     queue.append(k - W[j])
                 queue.append(j - 1)
@@ -60,6 +61,11 @@ def pretreatment(n, b, W):
             else:
                 queue.popleft()
                 queue.popleft()
+
+    length = []
+    for i in my_list:
+        length.append(len(i))
+    print(length)
     return my_list
 
 
