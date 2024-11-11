@@ -3,12 +3,13 @@ from collections import deque
 
 
 def dynamic_programming(n, b, W, V):
-    F = [[0 for _ in range(b + 1)] for _ in range(n + 1)]
-    I = [[0 for _ in range(b + 1)] for _ in range(n + 1)]
-    X = [0 for _ in range(n + 1)]
-    for k in range(1, n + 1):
-        for x in range(b + 1):
-            if k == 1:
+    F = [[0 for _ in range(b)] for _ in range(n)]
+    I = [[0 for _ in range(b)] for _ in range(n)]
+    X = [0 for _ in range(n)]
+
+    for k in range(n):
+        for x in range(b):
+            if k == 0:
                 if x < W[k]:
                     F[k][x] = 0
                     I[k][x] = 0
@@ -16,14 +17,14 @@ def dynamic_programming(n, b, W, V):
                     F[k][x] = V[k]
                     I[k][x] = 1
             elif x >= W[k] and V[k] + F[k - 1][x - W[k]] >= F[k - 1][x]:
-                F[k][x] = V[k] + F[k - 1][x - W[k]] >= F[k - 1][x]
+                F[k][x] = V[k] + F[k - 1][x - W[k]]
                 I[k][x] = 1
             else:
                 F[k][x] = F[k - 1][x]
                 I[k][x] = 0
 
-    x = b
-    for k in range(n, 0, -1):
+    x = b - 1
+    for k in range(n - 1, -1, -1):
         if I[k][x] == 1:
             X[k] = 1
             x = x - W[k]
@@ -84,9 +85,9 @@ def pretreatment(n, b, W):
 
 
 if __name__ == "__main__":
-    n = 4
-    b = 10
-    W = [0, 2, 3, 4, 7]
-    V = [0, 1, 3, 5, 9]
-    # dynamic_programming(n, b, W, V)
-    dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W))
+    n = 100
+    b = 1000
+    W = [random.randint(0, 100) for _ in range(100)]
+    V = [random.randint(0, 100) for _ in range(100)]
+    dynamic_programming(n, b, W, V)
+    # dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W))
