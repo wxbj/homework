@@ -90,4 +90,3 @@ if __name__ == "__main__":
     W = [random.randint(0, 100) for _ in range(100)]
     V = [random.randint(0, 100) for _ in range(100)]
     dynamic_programming(n, b, W, V)
-    # dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W))
