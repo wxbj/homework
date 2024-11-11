@@ -1,22 +1,20 @@
 import random
-from collections import deque
 
 
 def dynamic_programming(n, b, W, V):
     """
-
     :param n: 物品数
     :param b: 重量
     :param W: 每个物品的重量
     :param V: 每个物品的价值
     :return: 选择的物品
     """
-    F = [[0 for _ in range(b)] for _ in range(n)]
-    I = [[0 for _ in range(b)] for _ in range(n)]
+    F = [[0 for _ in range(b + 1)] for _ in range(n)]
+    I = [[0 for _ in range(b + 1)] for _ in range(n)]
     X = [0 for _ in range(n)]
 
     for k in range(n):
-        for x in range(b):
+        for x in range(b + 1):
             if k == 0:
                 if x < W[k]:
                     F[k][x] = 0
@@ -31,7 +29,7 @@ def dynamic_programming(n, b, W, V):
                 F[k][x] = F[k - 1][x]
                 I[k][x] = 0
 
-    x = b - 1
+    x = b
     for k in range(n - 1, -1, -1):
         if I[k][x] == 1:
             X[k] = 1

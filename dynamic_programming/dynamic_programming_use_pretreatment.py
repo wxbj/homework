@@ -4,8 +4,8 @@ import random
 
 # 动态规划
 def dynamic_programming_use_pretreatment(n, b, W, V, pretreatment_list):
-    F = [[0 for _ in range(b + 1)] for _ in range(n)]
-    I = [[0 for _ in range(b + 1)] for _ in range(n)]
+    F = [[0 for _ in range(b)] for _ in range(n)]
+    I = [[0 for _ in range(b)] for _ in range(n)]
     X = [0 for _ in range(n)]
 
     for k, pretreatment_set in zip(range(len(pretreatment_list)), pretreatment_list):
@@ -17,23 +17,21 @@ def dynamic_programming_use_pretreatment(n, b, W, V, pretreatment_list):
                 else:
                     F[k][x] = V[k]
                     I[k][x] = 1
+            elif x >= W[k] and V[k] + F[k - 1][x - W[k]] >= F[k - 1][x]:
+                F[k][x] = V[k] + F[k - 1][x - W[k]]
+                I[k][x] = 1
             else:
-                if x >= W[k] and V[k] + F[k - 1][x - W[k]] >= F[k - 1][x]:
-                    F[k][x] = V[k] + F[k - 1][x - W[k]]
-                    I[k][x] = 1
-                else:
-                    F[k][x] = F[k - 1][x]
-                    I[k][x] = 0
+                F[k][x] = F[k - 1][x]
+                I[k][x] = 0
 
-    x = b
-    for k in range(n - 1, -1, -1):
-        if I[k][x] == 1:
-            X[k] = 1
-            x = x - W[k]
-        else:
-            X[k] = 0
-    print(X)
-    print(len(X))
+        x = b - 1
+        for k in range(n - 1, -1, -1):
+            if I[k][x] == 1:
+                X[k] = 1
+                x = x - W[k]
+            else:
+                X[k] = 0
+        return X
 
 
 # 预处理，获取需要计算的值的序号
@@ -42,7 +40,7 @@ def pretreatment(n, b, W):
     for i in range(n):
         my_list.append([])
     queue = deque()
-    sign = [[0 for _ in range(b + 1)] for _ in range(n)]
+    sign = [[0 for _ in range(b)] for _ in range(n)]
 
     queue.append(n - 1)
     queue.append(b)
@@ -70,4 +68,4 @@ if __name__ == "__main__":
     b = 1000
     W = [random.randint(0, 100) for _ in range(100)]
     V = [random.randint(0, 100) for _ in range(100)]
-    dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W))
+    print(dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W)))
