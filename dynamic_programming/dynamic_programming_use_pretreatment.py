@@ -66,12 +66,18 @@ def pretreatment(n, b, W):
     for i in my_list:
         length.append(len(i))
     print(length)
+    # print(my_list)
     return my_list
 
 
 if __name__ == "__main__":
-    n = 100
-    b = 1000
-    W = [random.randint(0, 100) for _ in range(100)]
-    V = [random.randint(0, 100) for _ in range(100)]
+    n = 500
+    b = 10000
+    W = [random.randint(0, 100) for _ in range(500)]
+    V = [random.randint(0, 100) for _ in range(500)]
+    print(V)
+    # n = 4
+    # b = 10
+    # W = [2,3,4,7]
+    # V = [1,3,5,9]
     print(dynamic_programming_use_pretreatment(n, b, W, V, pretreatment(n, b, W)))
