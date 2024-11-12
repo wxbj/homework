@@ -9,7 +9,6 @@ def dynamic_programming(n, b, W, V):
     :param V: 每个物品的价值
     :return: 选择的物品
     """
-
     F = [[0 for _ in range(b + 1)] for _ in range(n)]
     I = [[0 for _ in range(b + 1)] for _ in range(n)]
     X = [0 for _ in range(n)]
@@ -37,18 +36,16 @@ def dynamic_programming(n, b, W, V):
             x = x - W[k]
         else:
             X[k] = 0
-    for i in F:
-        print(i)
     return X
 
 
 if __name__ == "__main__":
-    # n = 100
-    # b = 1000
-    # W = [random.randint(0, 100) for _ in range(100)]
-    # V = [random.randint(0, 100) for _ in range(100)]
-    n = 4
-    b = 10
-    W = [2, 3, 4, 7]
-    V = [1, 3, 5, 9]
+    n = 100
+    b = 1000
+    W = [random.randint(0, 100) for _ in range(100)]
+    V = [random.randint(0, 100) for _ in range(100)]
+    # n = 4
+    # b = 10
+    # W = [2, 3, 4, 7]
+    # V = [1, 3, 5, 9]
     print(dynamic_programming(n, b, W, V))
