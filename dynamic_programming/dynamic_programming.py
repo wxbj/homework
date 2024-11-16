@@ -40,12 +40,12 @@ def dynamic_programming(n, b, W, V):
 
 
 if __name__ == "__main__":
-    # n = 100
-    # b = 1000
-    # W = [random.randint(0, 100) for _ in range(100)]
-    # V = [random.randint(0, 100) for _ in range(100)]
-    n = 4
-    b = 10
-    W = [2, 3, 4, 7]
-    V = [1, 3, 5, 9]
+    n = 100
+    b = 1000
+    W = [random.randint(0, 100) for _ in range(100)]
+    V = [random.randint(0, 100) for _ in range(100)]
+    # n = 4
+    # b = 10
+    # W = [2, 3, 4, 7]
+    # V = [1, 3, 5, 9]
     print(dynamic_programming(n, b, W, V))

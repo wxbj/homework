@@ -1,7 +1,7 @@
 import copy
 
 
-# 并两个已排序好的列表，产生一个新的已排序好的列表
+# 合并两个已排序好的列表，产生一个新的已排序好的列表
 def merge(initial_list, left, mid, right):
     # 用来记录第一个列表的启示序号[left,low)
     i = left
