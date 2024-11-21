@@ -15,6 +15,7 @@ U = 5  # 初始电压
 f0 = U / R  # 初始值
 h = 1e-6  # 步长
 
+
 # 方程
 def f(t, i):
     return - R1 * i
@@ -39,6 +40,7 @@ def runge_kutta_4(f, f0, t_vals, h):
 # 时间点
 nPoint = 50
 t = np.linspace(0, 0.02 * 10, nPoint)
+print(t)
 
 # 计算结果
 i_vals = runge_kutta_4(f, f0, t, h)
