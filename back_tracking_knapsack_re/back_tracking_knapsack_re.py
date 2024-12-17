@@ -2,8 +2,8 @@ import random
 
 size = 30  # 物品数量
 B = 0  # 界限
-cv = 0  # 当前重量
-cw = 0  # 当前价值
+cv = 0  # 当前价值
+cw = 0  # 当前重量
 X = [0 for _ in range(size)]  # 记录是否放入物品
 Y = [0 for _ in range(size)]  # 临时记录是否放入物品
 count = 0  # 统计递归轮数
@@ -48,10 +48,6 @@ if __name__ == "__main__":
     # b = 13
     # V = [12, 11, 9, 8]
     # W = [8, 6, 4, 3]
-    # n = 4
-    # b = 13
-    # V = [13, 12, 9, 8]
-    # W = [8, 6, 5, 4]
     n = size
     b = 10 * size
     V = [random.randint(0, 100) for _ in range(size)]
