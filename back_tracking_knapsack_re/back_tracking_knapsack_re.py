@@ -1,6 +1,6 @@
 import random
 
-size = 4  # 物品数量
+size = 30  # 物品数量
 B = 0  # 界限
 cv = 0  # 当前重量
 cw = 0  # 当前价值
@@ -31,7 +31,7 @@ def BTKR(n, b, W, V, s):
         cw = cw - W[i]
         X[i] = 0
         i = i + 1
-    return Y, B
+    return "\n    选择的物品序号：" + str(Y) + "\n    最终装入背包的价值：" + str(B)
 
 
 # 代价函数
@@ -53,8 +53,12 @@ if __name__ == "__main__":
     # V = [13, 12, 9, 8]
     # W = [8, 6, 5, 4]
     n = size
-    b = 100 * size
+    b = 10 * size
     V = [random.randint(0, 100) for _ in range(size)]
     W = [random.randint(0, 100) for _ in range(size)]
-    print(BackTrackingKnapsackRe(n, b, W, V))
-    print(count)
+    print("物品数量：", size)
+    print("物品价值：", V)
+    print("物品重量：", W)
+    print("结果：", BackTrackingKnapsackRe(n, b, W, V))
+    print("回溯法需要的递归次数：", count)
+    print("暴力算需要遍历的数量：", 2 ** size)
